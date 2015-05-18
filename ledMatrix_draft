@@ -1,0 +1,16 @@
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(32, 8, PIN,  NEO_MATRIX_TOP + NEO_MATRIX_LEFT + NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG, NEO_GRB + NEO_KHZ800);
+
+/* 
+Adding a 300 to 500 Ohm resistor between your microcontroller's data pin and the data input on the first NeoPixel can help prevent voltage spikes 
+that might otherwise damage your first pixel. Please add one between your micro and NeoPixels! 
+*/
+
+// initialise with all three headers
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(32, 8, 6,
+  NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT + // check location of neopixel one and modify code according (bottom or left)
+  NEO_MATRIX_ROWS    + NEO_MATRIX_PROGRESSIVE,
+  NEO_GRB            + NEO_KHZ800);
+  
+  
+// powering the LEDS and board
+// Drawing graphics: Coordinate (0,0) for drawing graphics will always be at the top-left, regardless of the actual position of the first NeoPixel.
