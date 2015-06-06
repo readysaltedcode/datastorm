@@ -1,0 +1,8 @@
+*.bak
+*.csproj.user
+*.pfx
+Properties/
+bin/
+obj/
+publish/
+
