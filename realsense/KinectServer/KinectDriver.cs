@@ -10,7 +10,7 @@ using System.Net;
 
 namespace KinectServer
 {
-    public class KinectDriver : SkeletonEventDispatcher
+    public class KinectDriver : MocapDriver
     {
 
         public KinectSensor nui;
@@ -22,29 +22,25 @@ namespace KinectServer
         public static Stopwatch stopwatch = new Stopwatch();
         private List<SkeletonReceiver> listeners = new List<SkeletonReceiver>();
 
-        public KinectDriver() {
-            init();
+        public KinectDriver()
+        {
+            System.Threading.Thread thread = new System.Threading.Thread(init);
+            thread.Start();
         }
 
-        private void init() {
-            foreach (var potentialSensor in KinectSensor.KinectSensors)
-            {
-                if (potentialSensor.Status == KinectStatus.Connected)
-                {
-                    nui = potentialSensor;
-                    break;
-                }
-            }
+        private void init()
+        {
+            nui = KinectSensor.GetDefault();
             try
             {
-                nui.Start();
+                nui.Open();
             }
             catch (Exception e)
             {
                 Console.WriteLine("Failed to initialise Kinect");
                 return;
             }
-
+            /*
             try
             {
                 Thread.Sleep(300);
@@ -59,7 +55,6 @@ namespace KinectServer
                 Console.WriteLine("Failed to change elevation.\n{0}", e.Message);
                 throw new Exception("Error initializing kinect");
             }
-
             try
             {
                 nui.SkeletonStream.Enable();
@@ -67,7 +62,7 @@ namespace KinectServer
             catch {
                 Console.WriteLine("Failed to open skeleton stream"); 
             }
-
+            
 
             try
             {
@@ -75,70 +70,29 @@ namespace KinectServer
             }
             catch { Console.WriteLine("Failed to open depth stream"); }
 
-            /*try
+            try
             {
                 nui.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
             }
             catch { Console.WriteLine("Failed to add skeleton stream frame ready event handler"); }
-            */
+            
             try
             {
                 nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
             }
-            catch { Console.WriteLine("Failed to add skeleton stream frame ready event handler"); }
-        }
-
-        private void nui_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
-        {
-            try
+            catch { Console.WriteLine("Failed to add skeleton stream frame ready event handler"); }*/
+            bool running = true;
+            BodyFrameReader bodyReader = nui.BodyFrameSource.OpenReader();
+            while (running)
             {
-                KinectSkeletonFrame skeletonFrame = new KinectSkeletonFrame(e.OpenSkeletonFrame());
-                Console.WriteLine("\tSkeletonFrame.FrameNumber: {0}", skeletonFrame.FrameNumber);
-                newSkeletonFrame = true;
+                BodyFrame frame = bodyReader.AcquireLatestFrame();
+                if (frame != null)
+                {
+                    SkeletonFrameReady(new KinectSkeletonFrame(frame, 0, 0));
 
-                List<SkeletonReceiver> sickListeners = new List<SkeletonReceiver>();
-                // This would be more stable if implemented using a thread pool and a queue, but for
-                // a handful of clients this shouldn't be an issue;
-                List<SkeletonReceiver> listenersCopy;
-                lock (listeners)
-                {
-                    listenersCopy = listeners.ToList();
-                }
-                foreach (SkeletonReceiver listener in listenersCopy)
-                {
-                    try
-                    {
-                        listener.receiveFrame(skeletonFrame);
-                    }
-                    catch
-                    {
-                        Console.WriteLine("A Kinect client caused an error and will no longer receive messages.");
-                        sickListeners.Add(listener);
-                    }
-                }
-                foreach (SkeletonReceiver sickListener in sickListeners)
-                {
-                    listeners.Remove(sickListener);
+                    frame.Dispose();
                 }
             }
-            catch (Exception ex) { Console.WriteLine("Failed in nui_SkeletonFrameReady"); Console.WriteLine(ex.StackTrace); }
-
-        }
-
-        public void addSkeletonReceiver(SkeletonReceiver listener)
-        {
-
-            lock (listeners)
-            {
-                if (!listeners.Contains(listener))
-                    listeners.Add(listener);
-            }
-        }
-
-        public void removeSkeletonReceiver(SkeletonReceiver listener)
-        {
-            lock(listeners)
-                listeners.Remove(listener);
         }
     }
 }

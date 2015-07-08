@@ -20,7 +20,7 @@ namespace KinectServer
             this.z = realsensePoint.z;
         }
 
-        public Point(SkeletonPoint kinectPoint)
+        public Point(CameraSpacePoint kinectPoint)
         {
             this.x = kinectPoint.X;
             this.y = kinectPoint.Y;
@@ -116,29 +116,30 @@ namespace KinectServer
 
     public class KinectSkeletonFrame : SequencedSkeletonFrame
     {
-        public KinectSkeletonFrame(SkeletonFrame frame) { _frame = frame; }
+        public KinectSkeletonFrame(BodyFrame frame, int FrameNumber, Int64 TimeStamp) 
+        :base(FrameNumber,TimeStamp) { 
+            _frame = frame; 
+        }
 
         public KinectSkeletonFrame(int FrameNumber, Int64 TimeStamp)
             :base(FrameNumber, TimeStamp)
         {
         }
 
-        override public Int64 TimeStamp { get { return _frame == null ? base.TimeStamp : _frame.Timestamp; } }
-        public int FrameNumber { get { return _frame==null? base.FrameNumber : _frame.FrameNumber; } }
         //public SkeletonFrameQuality Quality { get { return _frame.Quality; } }
-        public Tuple<float,float,float,float> FloorClipPlane { get { return _frame.FloorClipPlane; } }
+        //public Tuple<float,float,float,float> FloorClipPlane { get { return _frame.FloorClipPlane; } }
         //public Vector NormalToGravity { get { return _frame.NormalToGravity; } }
         // only returns the skeletons that are being tracked, because otherwise we generate a lot of junk data
         override public ISkeletonCollection Skeletons { get {
-            Skeleton[] skeletonDump = new Skeleton[_frame.SkeletonArrayLength];
-            _frame.CopySkeletonDataTo(skeletonDump);
+            Body[] skeletonDump = new Body[_frame.BodyCount];
+            _frame.GetAndRefreshBodyData(skeletonDump);
             ArrayList trimmedSkeletons = new ArrayList();
-            foreach (Skeleton trimmableSkeleton in skeletonDump)
+            foreach (Body trimmableSkeleton in skeletonDump)
             {
-                if (trimmableSkeleton.TrackingState != SkeletonTrackingState.NotTracked) trimmedSkeletons.Add(trimmableSkeleton);
+                if (trimmableSkeleton.IsTracked) trimmedSkeletons.Add(trimmableSkeleton);
             }
-            return new KinectSkeletonCollection(trimmedSkeletons.ToArray(typeof(Skeleton)) as Skeleton[]); } }
-        private SkeletonFrame _frame;
+            return new KinectSkeletonCollection(trimmedSkeletons.ToArray(typeof(Body)) as Body[]); } }
+        private BodyFrame _frame;
 
         private int _FrameNumber;
         private Int64 _TimeStamp;
@@ -185,11 +186,11 @@ namespace KinectServer
 
         private class KinectSkeletonCollection : ISkeletonCollection
         {
-            public KinectSkeletonCollection(Skeleton[] skeletons)
+            public KinectSkeletonCollection(Body[] skeletons)
             {
                 _skeletons = new KinectSkeletonData[skeletons.GetLength(0)];
                 int i = 0;
-                foreach (Skeleton skeleton in skeletons)
+                foreach (Body skeleton in skeletons)
                 {
                     _skeletons[i++] = new KinectSkeletonData(skeleton);
                 }
@@ -201,23 +202,23 @@ namespace KinectServer
 
             private class KinectSkeletonData : ISkeletonData
             {
-                public KinectSkeletonData(Skeleton data) { _data = data; }
-                public Boolean Trackable { get { return (_data.TrackingState  != SkeletonTrackingState.NotTracked); } }
-                public int TrackingID { get { return _data.TrackingId; } }
+                public KinectSkeletonData(Body data) { _data = data; }
+                public Boolean Trackable { get { return (_data.IsTracked ); } }
+                public int TrackingID { get { return (int) _data.TrackingId; } }
                 //public int EnrollmentIndex { get { return _data.EnrollmentIndex; } }
                 //public int UserIndex { get { return _data.UserIndex; } }
-                public SkeletonPoint Position { get { return _data.Position; } }
+                //public Point Position { get { return new Point(_data.); } }
                 public IJointsCollection Joints { get { return new KinectJointsCollection(_data.Joints); } }
                 //public SkeletonQuality Quality { get { return _data.Quality; } }
-                private Skeleton _data;
+                private Body _data;
 
                 private class KinectJointsCollection : IJointsCollection
                 {
-                    public KinectJointsCollection(JointCollection joints) { _joints = joints; }
+                    public KinectJointsCollection(IReadOnlyDictionary<JointType,Joint> joints) { _joints = joints; }
                     public int Count { get { return _joints.Count; } }
                     public GJoint this[JointType i] { get { return new GJoint(_joints[i]); } }
                     public IEnumerator GetEnumerator() { return _joints.GetEnumerator(); }
-                    private JointCollection _joints;
+                    private IReadOnlyDictionary<JointType, Joint> _joints;
                 }
             }
         }

@@ -10,7 +10,7 @@ using System.Net;
 
 namespace KinectServer
 {
-    public class RealsenseDriver : SkeletonEventDispatcher
+    public class RealsenseDriver : MocapDriver
     {
 
         public static KinectSkeletonFrame skeletonFrame;
@@ -18,7 +18,6 @@ namespace KinectServer
         public static int fps = 30;
         public static int mspf = 1000 / fps;
         public static Stopwatch stopwatch = new Stopwatch();
-        private List<SkeletonReceiver> listeners = new List<SkeletonReceiver>();
         private bool _running;
 
         public RealsenseDriver()
@@ -28,7 +27,6 @@ namespace KinectServer
         }
 
         private void init() {
-            bool flag = true;
             PXCMSession session = PXCMSession.CreateInstance();
             PXCMSenseManager instance = null;
             instance = session.CreateSenseManager();
@@ -148,58 +146,6 @@ namespace KinectServer
             return pxcmStatus.PXCM_STATUS_NO_ERROR;
         }
 
-        private void SkeletonFrameReady(ISkeletonFrame frame)
-        {
-            try
-            {
-                //Console.WriteLine("\tSkeletonFrame.FrameNumber: {0}", frame.FrameNumber);
-                newSkeletonFrame = true;
-
-                List<SkeletonReceiver> sickListeners = new List<SkeletonReceiver>();
-                // This would be more stable if implemented using a thread pool and a queue, but for
-                // a handful of clients this shouldn't be an issue;
-                List<SkeletonReceiver> listenersCopy;
-                lock (listeners)
-                {
-                    listenersCopy = listeners.ToList();
-                }
-                foreach (SkeletonReceiver listener in listenersCopy)
-                {
-                    try
-                    {
-                        listener.receiveFrame(frame);
-                    }
-                    catch
-                    {
-                        Console.WriteLine("A skeleton client caused an error and will no longer receive messages.");
-                        sickListeners.Add(listener);
-                    }
-                }
-                foreach (SkeletonReceiver sickListener in sickListeners)
-                {
-                    listeners.Remove(sickListener);
-                }
-            }
-            catch (Exception ex) { Console.WriteLine("Failed in SkeletonFrameReady"); Console.WriteLine(ex.StackTrace); }
-
-        }
-
-
-        public void addSkeletonReceiver(SkeletonReceiver listener)
-        {
-
-            lock (listeners)
-            {
-                if (!listeners.Contains(listener))
-                    listeners.Add(listener);
-            }
-        }
-
-        public void removeSkeletonReceiver(SkeletonReceiver listener)
-        {
-            lock(listeners)
-                listeners.Remove(listener);
-        }
 
         public float _maxRange { get; set; }
     }
