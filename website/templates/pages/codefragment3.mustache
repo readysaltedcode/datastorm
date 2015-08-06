@@ -1,0 +1,78 @@
+<div id='code-container-3' class="row data-vis-code">
+  <div class="col-lg-2 col-md-1 hidden-sm hidden-xs">
+  </div> <!-- /col -->
+  <div class="col-lg-8 col-md-10">
+    <div data-height="1350" data-theme-id="8632" data-slug-hash="yLebI" data-default-tab="js" data-user="readysaltedcode" class='codepen'>
+      <pre><code>
+        // BIGDATA
+        // For a single skeleton, each joint position is represented with 3 points (one for each co-ordinate). Each joint has a unique colour.
+        // The value of each co-ordinate is mapped to the y-axis. The x-axis is random.
+
+        function BigData(canvas) {
+          this.width = 1200;
+          this.height = 800;
+
+          this.startTime = Date.now();
+
+          this.color = d3.scale.category20b();
+          this.scale = d3.scale.linear().domain([-3, 6]).range([1000, 0]);
+          this.indexScale = d3.scale.threshold().domain([0, 54000, 70000, 84000, 120000, 154000, 167000, 200000, 230000]).range([0, 3, 10, 40, 10, 1, 60, 20, 10, 10]);
+
+          this.ctx = canvas.getContext(&#39;2d&#39;);
+
+          this.ctx.fillStyle = &quot;rgb(0,0,0)&quot;;
+          this.ctx.fillRect(0, 0, this.width, this.height);
+
+          this.draw = function(json) {
+            var ctx = this.ctx;
+            var width = this.width;
+            var height = this.height;
+            var startTime = this.startTime;
+            var scale = this.scale;
+            var indexScale = this.indexScale;
+            var color = this.color;
+            if(json === undefined) {
+              return;
+            }
+
+            var data = getDataOfSkeleton(json, 0);
+
+            ctx.globalAlpha = 1;
+
+            ctx.fillStyle = &quot;rgba(0, 0, 0, 0.02)&quot;;
+            ctx.fillRect(0, 0, width, height);
+
+            var indexThreshold = indexScale(Date.now() - startTime);
+            // d3.select(&#39;#info&#39;).text(indexThreshold);
+
+            _.each(data, function(d, index) {
+              if(index &gt; indexThreshold)
+                return;
+
+              var x = Math.random() * width;
+              var y = scale(d) % height;
+              ctx.fillStyle = color(index % 20);
+              drawCircle(ctx, x, y, 5);
+            });
+          };
+        };
+
+        // You can choose one of these to visualise a different dance
+        var DATASET_ALGORITHM = &#39;https://s3-eu-west-1.amazonaws.com/arrastre/data/algorithm_&#39;;
+
+        var DATASET_BINARY = &#39;https://s3-eu-west-1.amazonaws.com/arrastre/data/binary_&#39;;
+
+        var DATASET_WHOLEPIECE = &#39;https://s3-eu-west-1.amazonaws.com/arrastre/data/wholepiece_&#39;;
+
+        var dataFetcher = new ChunkedDataFetcher(DATASET_ALGORITHM);
+        var bigData = new BigData( document.getElementById(&#39;mycanvas&#39;));
+        dataFetcher.drawFunction = function(json) {bigData.draw(json);}
+        </code></pre>
+      </div>
+    <script async src="//codepen.io/assets/embed/ei.js"></script>
+
+    <p class="codepen-footer">You can edit this data visualisation and watch the changes in real-time <a href='http://codepen.io/readysaltedcode/pen/yLebI/'>here</a> on <a href='http://codepen.io'>CodePen</a>.</p>
+  </div> <!-- /col -->
+  <div class="col-lg-2 col-md-1 hidden-sm hidden-xs">
+  </div> <!-- /col -->
+</div> <!-- /row -->

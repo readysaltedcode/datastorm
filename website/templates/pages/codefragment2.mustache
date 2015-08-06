@@ -1,0 +1,206 @@
+<div id='code-container-2' class="row data-vis-code">
+  <div class="col-lg-2 col-md-1 hidden-sm hidden-xs">
+  </div> <!-- /col -->
+  <div class="col-lg-8 col-md-10">
+    <div data-height="3875" data-theme-id="8632" data-slug-hash="ILDyu" data-default-tab="js" data-user="readysaltedcode" class='codepen'>
+      <pre><code>
+        var canvas = document.getElementById(&#39;mycanvas&#39;);
+
+        var width = 1000, height = 600;
+
+        var color = d3.scale.category20();
+        var xScale = d3.scale.linear().domain([-1.5, 1.5]).range([0, width]);
+        var yScale = d3.scale.linear().domain([-1.5, 1.5]).range([height, 0]);
+
+        var ctx = canvas.getContext(&#39;2d&#39;);
+
+        ctx.fillStyle = &quot;rgb(0,0,0)&quot;;
+        ctx.fillRect(0, 0, width, height);
+
+          function draw1(json, err) {
+            var triangles = getTrianglesOfSkeleton(json, 0);
+
+            // console.log(triangles);
+
+            // ctx.fillStyle = &quot;rgba(0, 0, 0, 0.01)&quot;;
+            // ctx.fillRect(0, 0, width, height);
+
+            // ctx.globalCompositeOperation = &#39;xor&#39;;
+              ctx.beginPath();
+              ctx.fillStyle = &#39;#aec7e8&#39;;
+            _.each(triangles, function(triangle, index) {
+              _.each(triangle, function(vertex) {
+                var x = xScale(vertex.X);
+                var y = yScale(vertex.Y);
+                ctx.lineTo(x, y);
+              });
+            });
+
+            // Draw head
+            _.each(json.Skeletons[0].Joints, function(j) {
+              if(j.JointType !== &#39;Head&#39;)
+                return;
+              var x = xScale(j.Position.X);
+              var y = yScale(j.Position.Y);
+              ctx.lineTo(x,y);
+            });
+
+           ctx.fill();
+        }
+
+        function draw2(json, err) {
+            var triangles = getTrianglesOfSkeleton(json, 0);
+
+            // console.log(triangles);
+
+            ctx.fillStyle = &quot;rgba(0, 0, 0, 0.01)&quot;;
+            ctx.fillRect(0, 0, width, height);
+
+            // ctx.globalCompositeOperation = &#39;xor&#39;;
+              ctx.beginPath();
+              ctx.fillStyle = &#39;#aec7e8&#39;;
+            _.each(triangles, function(triangle, index) {
+              _.each(triangle, function(vertex) {
+                var x = xScale(vertex.X);
+                var y = yScale(vertex.Y);
+                ctx.lineTo(x, y);
+              });
+            });
+
+            // Draw head
+            _.each(json.Skeletons[0].Joints, function(j) {
+              if(j.JointType !== &#39;Head&#39;)
+                return;
+              var x = xScale(j.Position.X);
+              var y = yScale(j.Position.Y);
+              ctx.lineTo(x,y);
+            });
+
+           ctx.fill();
+        }
+
+
+        function draw3(json, err) {
+            var triangles = getTrianglesOfSkeleton(json, 0);
+
+             ctx.fillStyle = &quot;rgba(0, 0, 0, 0.03)&quot;;
+            ctx.fillRect(0, 0, width, height);
+
+              ctx.fillStyle = &#39;#aec7e8&#39;;
+
+            _.each(triangles, function(triangle) {
+              ctx.beginPath();
+              _.each(triangle, function(vertex) {
+                var x = xScale(vertex.X);
+                var y = yScale(vertex.Y);
+                ctx.lineTo(x, y);
+              });
+              ctx.fill();
+            });
+
+            // Draw head
+            _.each(json.Skeletons[0].Joints, function(j) {
+              if(j.JointType !== &#39;Head&#39;)
+                return;
+
+              var x = xScale(j.Position.X);
+              var y = yScale(j.Position.Y);
+              drawCircle(ctx, x, y, 18);
+            });
+        }
+
+        function draw4(json, err) {
+            var triangles = getTrianglesOfSkeleton(json, 0);
+
+            // console.log(triangles);
+
+            ctx.fillStyle = &quot;rgba(0, 0, 0, 0.05)&quot;;   // 0.01 a nice setting
+            ctx.fillRect(0, 0, width, height);
+
+            _.each(triangles, function(triangle, index) {
+              ctx.fillStyle = color(index);
+              ctx.beginPath();
+              _.each(triangle, function(vertex) {
+                var x = xScale(vertex.X);
+                var y = yScale(vertex.Y);
+                ctx.lineTo(x, y);
+              });
+              ctx.fill();
+            });
+
+            // Draw head
+            _.each(json.Skeletons[0].Joints, function(j) {
+              if(j.JointType !== &#39;Head&#39;)
+                return;
+
+              ctx.fillStyle = color(15);
+              var x = xScale(j.Position.X);
+              var y = yScale(j.Position.Y);
+              drawCircle(ctx, x, y, 18);
+            });
+        }
+
+
+        function draw5(json, err) {
+
+            var triangles = getTrianglesOfSkeleton(json, 0);
+
+            // console.log(triangles);
+
+            ctx.fillStyle = &quot;rgba(0, 0, 0, 0.2)&quot;;   // 0.01 a nice setting
+            ctx.fillRect(0, 0, width, height);
+
+            _.each(triangles, function(triangle, index) {
+              ctx.fillStyle = color(index);
+              ctx.beginPath();
+              _.each(triangle, function(vertex) {
+                var x = xScale(vertex.X);
+                var y = yScale(vertex.Y);
+                ctx.lineTo(x, y);
+              });
+              ctx.fill();
+            });
+
+            // Draw head
+            _.each(json.Skeletons[0].Joints, function(j) {
+              if(j.JointType !== &#39;Head&#39;)
+                return;
+
+              ctx.fillStyle = color(15);
+              var x = xScale(j.Position.X);
+              var y = yScale(j.Position.Y);
+              drawCircle(ctx, x, y, 18);
+            });
+        }
+
+        // poll();
+        var drawFunction = draw1;
+
+        setTimeout(function() {drawFunction = draw2;}, 8000);
+        setTimeout(function() {drawFunction = draw3;}, 16000);
+        setTimeout(function() {drawFunction = draw4;}, 24000);
+        setTimeout(function() {drawFunction = draw5;}, 32000);
+
+
+      // You can choose one of these to visualise a different dance
+      var DATASET_ALGORITHM = &#39;https://s3-eu-west-1.amazonaws.com/arrastre/data/algorithm_&#39;;
+
+      var DATASET_BINARY = &#39;https://s3-eu-west-1.amazonaws.com/arrastre/data/binary_&#39;;
+
+      var DATASET_WHOLEPIECE = &#39;https://s3-eu-west-1.amazonaws.com/arrastre/data/wholepiece_&#39;;
+
+      var dataFetcher = new ChunkedDataFetcher(DATASET_ALGORITHM);
+      dataFetcher.drawFunction = function(json) {
+            drawFunction(json, null);
+      }
+      </code></pre>
+    </div>
+    <script async src="//codepen.io/assets/embed/ei.js"></script>
+
+    <p class="codepen-footer">You can edit this data visualisation and watch the changes in real-time <a href='http://codepen.io/readysaltedcode/pen/ILDyu/'>here</a> on <a href='http://codepen.io'>CodePen</a>.</p>
+
+  </div> <!-- /col -->
+  <div class="col-lg-2 col-md-1 hidden-sm hidden-xs">
+  </div> <!-- /col -->
+</div> <!-- /row -->
+
