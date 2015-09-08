@@ -21,14 +21,3 @@ var loadAnimation = function(animation) {
     count++;
   }
 };
-
-var loadPage = function(page) {
-  var pageList = ['home', 'about', 'dance', 'datavis', 'terms', 'resources'];
-  for(var i=0; i < pageList.length; i++) {
-    if(page == pageList[i]) {
-      $('#' + pageList[i]).show();
-    } else {
-      $('#' + pageList[i]).hide();
-    }
-  }
-};

@@ -18,6 +18,7 @@ body {
 
 // ########## NAVBAR ##########
 .navbar-default .navbar-nav > li,
+.navbar-default .navbar-nav > li > a,
 .navbar-default .navbar-brand {
   cursor: pointer;
   color: #F0F1F2;
@@ -30,7 +31,7 @@ body {
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: @blue-medium;
+  background-color: @blue-light;
 }
 .navbar-default .navbar-toggle {
   border-color: @blue-lightest;
@@ -40,21 +41,21 @@ body {
   background-color: @blue-lightest;
 }
 .navbar-brand {
-  background: @purple-dark;
+  background: @purple-darkest;
   height: 52px;
 }
 .navbar-brand img {
   width: 96%;
 }
 .navbar-default .navbar-brand:hover {
-  background: @purple-darkest;
+  background: @purple-medium;
 }
 .navbar-nav {
-  background: @blue-light;
+  background: @blue-dark;
 }
 .navbar-collapse,
 .container-fluid {
-  background: @blue-light;
+  background: @blue-dark;
   padding-right: 0;
 }
 .container-fluid {
@@ -77,7 +78,7 @@ nav {
 #nav-list > li {
   text-align: center;
   width: 25%;
-  border: 1px solid @blue-medium;
+  border: 1px solid @blue-dark;
   border-right: none;
   height: 100%;
   line-height: 3em;
@@ -87,7 +88,7 @@ nav {
 }
 #nav-list > li:hover,
 #active-nav {
-  background: @blue-dark;
+  background: @blue-light;
 }
 #active-subnav-button {
   background: #C68A0A;
@@ -110,6 +111,7 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing {
   }
 }
 
+
 .main-container {
   margin: 3em auto;
   background: @blue-lightest;
@@ -121,9 +123,9 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing {
     font-size: 1.2em;
     text-align: justify;
   }
-  #about, #dance, #datavis, #resources, #terms, #animation-container-2, #animation-container-3, #animation-container-4, #animation-container-5, #code-container-2, #code-container-3, #code-container-4, #code-container-5 { display: none; }
+  #animation-container-2, #animation-container-3, #animation-container-4, #animation-container-5, #code-container-2, #code-container-3, #code-container-4, #code-container-5 { display: none; }
   #about, #resources, #terms, #dance, #datavis { margin: 2em auto; }
-  .home-banner, .about-banner, .resources-banner { height: 400px; }
+  .home-banner, .about-banner, .resources-banner { height: 500px; }
   .home-banner {
     background: url('../img/main_image.jpg');
     margin: -15px;
@@ -139,7 +141,7 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing {
       border: 2px solid #F0F1F2;
       border-radius: 0;
       font-size: 0.9em;
-      margin: 3em auto;
+      margin: 1em auto 3em;
       &:hover {
         background: #F0F1F2;
         color: #000;
@@ -252,16 +254,16 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing {
 #active-data-vis-button,
 .data-vis-subnav-button:hover {
   color: @green-lightest;
-  border: 1px solid @green-dark;
+  border: 1px solid @green-darkest;
   padding-top: 1%;
   cursor: pointer;
 }
 .data-vis-subnav-button {
-  background: @green-dark;
+  background: @green-darkest;
 }
 .data-vis-subnav-button:hover,
 #active-data-vis-button {
-  background: @green-darkest;
+  background: @green-dark;
 }
 .data-vis-subnav a:hover {
   text-decoration: none;
@@ -460,7 +462,7 @@ pre {
     padding-left: 0;
   }
   .container-fluid>.navbar-header {
-    background: @blue-light;
+    background: @blue-dark;
     float: none;
     margin-left: 15px;
   }
@@ -514,7 +516,7 @@ pre {
     width: 100%;
   }
   .container-fluid>.navbar-header {
-    background: @blue-light;
+    background: @blue-dark;
   }
   .home-banner,
   .event-container {

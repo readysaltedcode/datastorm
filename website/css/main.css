@@ -11,6 +11,7 @@ body {
   font-weight: bold;
 }
 .navbar-default .navbar-nav > li,
+.navbar-default .navbar-nav > li > a,
 .navbar-default .navbar-brand {
   cursor: pointer;
   color: #F0F1F2;
@@ -23,7 +24,7 @@ body {
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #456f82;
+  background-color: #6a8b98;
 }
 .navbar-default .navbar-toggle {
   border-color: #afd1de;
@@ -33,21 +34,21 @@ body {
   background-color: #afd1de;
 }
 .navbar-brand {
-  background: #4e2c73;
+  background: #36145b;
   height: 52px;
 }
 .navbar-brand img {
   width: 96%;
 }
 .navbar-default .navbar-brand:hover {
-  background: #36145b;
+  background: #764da3;
 }
 .navbar-nav {
-  background: #6a8b98;
+  background: #27576b;
 }
 .navbar-collapse,
 .container-fluid {
-  background: #6a8b98;
+  background: #27576b;
   padding-right: 0;
 }
 .container-fluid {
@@ -70,7 +71,7 @@ nav {
 #nav-list > li {
   text-align: center;
   width: 25%;
-  border: 1px solid #456f82;
+  border: 1px solid #27576b;
   border-right: none;
   height: 100%;
   line-height: 3em;
@@ -80,7 +81,7 @@ nav {
 }
 #nav-list > li:hover,
 #active-nav {
-  background: #27576b;
+  background: #6a8b98;
 }
 #active-subnav-button {
   background: #C68A0A;
@@ -112,11 +113,6 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing ul {
   font-size: 1.2em;
   text-align: justify;
 }
-.main-container #about,
-.main-container #dance,
-.main-container #datavis,
-.main-container #resources,
-.main-container #terms,
 .main-container #animation-container-2,
 .main-container #animation-container-3,
 .main-container #animation-container-4,
@@ -137,7 +133,7 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing ul {
 .main-container .home-banner,
 .main-container .about-banner,
 .main-container .resources-banner {
-  height: 400px;
+  height: 500px;
 }
 .main-container .home-banner {
   background: url('../img/main_image.jpg');
@@ -157,7 +153,7 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing ul {
   border: 2px solid #F0F1F2;
   border-radius: 0;
   font-size: 0.9em;
-  margin: 3em auto;
+  margin: 1em auto 3em;
 }
 .main-container .home-banner a:hover {
   background: #F0F1F2;
@@ -271,16 +267,16 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing ul {
 #active-data-vis-button,
 .data-vis-subnav-button:hover {
   color: #95c2a6;
-  border: 1px solid #2c824d;
+  border: 1px solid #005921;
   padding-top: 1%;
   cursor: pointer;
 }
 .data-vis-subnav-button {
-  background: #2c824d;
+  background: #005921;
 }
 .data-vis-subnav-button:hover,
 #active-data-vis-button {
-  background: #005921;
+  background: #2c824d;
 }
 .data-vis-subnav a:hover {
   text-decoration: none;
@@ -474,7 +470,7 @@ pre {
     padding-left: 0;
   }
   .container-fluid > .navbar-header {
-    background: #6a8b98;
+    background: #27576b;
     float: none;
     margin-left: 15px;
   }
@@ -527,7 +523,7 @@ pre {
     width: 100%;
   }
   .container-fluid > .navbar-header {
-    background: #6a8b98;
+    background: #27576b;
   }
   .home-banner,
   .event-container {

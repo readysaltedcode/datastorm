@@ -22,34 +22,6 @@ module.exports = function(grunt) {
         dest: './css/main.css'
       }
     },
-    mustache: {
-      files : {
-        src: './templates/pages',
-        dest: './templates/templates.json',
-        options: {
-          prefix: ' ',
-          postfix: ' ',
-          verbose: true
-        }
-      }
-    },
-    mustache_render: {
-      options: {
-        // Task global options go here
-      },
-      your_target: {
-        options: {
-          // Target specific options go here
-        },
-        files : [
-          {
-            data: './templates/templates.json',
-            template: './templates/layout.mustache',
-            dest: './index.html'
-          }
-        ]
-      },
-    },
     watch: {
       options: {
         livereload: true
@@ -61,25 +33,15 @@ module.exports = function(grunt) {
       css: {
         files: ['./css/less/*.less'],
         tasks: ['less']
-      },
-      mustache: {
-        files: ['./templates/pages/*.mustache'],
-        tasks: ['mustache', 'json']
-      },
-      mustache_render: {
-        files: ['./templates/templates.json', './templates/*.mustache'],
-        tasks: ['mustache_render']
-      },
+      }
     },
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-mustache-render');
-  grunt.loadNpmTasks('grunt-mustache');
 
   grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('dev', ['less', 'mustache', 'mustache_render', 'watch']);
+  grunt.registerTask('dev', ['less', 'watch']);
 
 };
