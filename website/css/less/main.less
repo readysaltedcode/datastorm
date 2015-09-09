@@ -11,6 +11,7 @@
 
 body {
   font-family: qsand, sans-serif;
+  min-width: 350px;
 }
 .bold-text {
   font-weight: bold;
@@ -127,12 +128,10 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing {
   #about, #resources, #terms, #dance, #datavis { margin: 2em auto; }
   .home-banner, .about-banner, .resources-banner { height: 500px; }
   .home-banner {
-    background: url('../img/main_image.jpg');
     margin: -15px;
     color: #fff;
-    font-size: 1.8em;
+    font-size: 1.7em;
     font-weight: bold;
-    padding: 5% 15%;
     text-align: center;
     p { text-align: justify; }
     a {
@@ -150,16 +149,18 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing {
     }
   }
   .about-banner {
-    background: url('../img/main_image.jpg');
+    background: url('../img/resources2.jpg');
+    background-size: cover;
+    background-position: 100% 68%;
     margin: 1.5em -15px;
   }
   .resources-banner {
-    background: url('../img/main_image.jpg');
+    background: @blue-darkest;
     margin: 1.5em -15px;
   }
   .resource-header{
     font-size: 1.4em;
-    text-decoration: underline;
+    text-decoration: none;
     margin-bottom: 0;
     margin-top: 3%;
     font-weight: bold;
@@ -209,6 +210,39 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing {
   margin-top: 0;
   padding-top: 0;
 }
+
+#home-content {
+  position: absolute;
+  display: inline-block;
+  z-index: 1;
+  left: 5%;
+  top: 5%;
+  margin-right: 5%;
+}
+#homeCarousel {
+  .first-slide{ background: url('../img/home1.jpg') ; }
+  .second-slide{ background: url('../img/home2.jpg') ; }
+  .first-slide, .second-slide {
+    background-position: 100% 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 500px;
+  }
+}
+#resourcesCarousel {
+  .first-slide{ background: url('../img/resources1.jpg') ; }
+  .second-slide{ background: url('../img/resources2.jpg') ; }
+  .third-slide{ background: url('../img/resources3.jpg') ; }
+  .fourth-slide{ background: url('../img/resources4.jpg') ; }
+  .fifth-slide{ background: url('../img/resources5.jpg') ; }
+  .first-slide, .second-slide, .third-slide, .fourth-slide, .fifth-slide {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 500px;
+  }
+}
+
 
 /* ########## DATA VIS ########## */
 .data-vis-header {
@@ -333,13 +367,24 @@ pre {
     }
   }
 }
-@media (min-width: 456px) and (max-width: 599px) {
+@media (min-width: 515px) and (max-width: 599px) {
   #data-vi-animation iframe.cp_embed_iframe {
     height: 250px;
   }
   #home {
     .home-banner {
-      font-size: 1.5em;
+      font-size: 1.4em;
+      a { margin: 1.4em auto; }
+    }
+  }
+}
+@media (min-width: 456px) and (max-width: 514px) {
+  #data-vi-animation iframe.cp_embed_iframe {
+    height: 250px;
+  }
+  #home {
+    .home-banner {
+      font-size: 1.3em;
       a { margin: 1.4em auto; }
     }
   }
@@ -350,7 +395,7 @@ pre {
   }
   #home {
     .home-banner {
-      font-size: 1.3em;
+      font-size: 1.1em;
       a { margin: 1.4em auto; }
     }
   }
@@ -361,7 +406,7 @@ pre {
   }
   #home {
     .home-banner {
-      font-size: 1.3em;
+      font-size: 1.1em;
       a { margin: 1.2em auto; }
     }
   }
@@ -399,7 +444,6 @@ pre {
   .event-container {
     font-size: 1.5em;
     height: 400px;
-    padding: 5% 15%;
   }
   .home-banner > a {
     font-size: 0.7em;
@@ -429,7 +473,6 @@ pre {
   .event-container {
     font-size: 1.35em;
     height: 400px;
-    padding: 5% 10%;
   }
   .home-banner > a {
     font-size: 0.65em;
@@ -522,7 +565,6 @@ pre {
   .event-container {
     font-size: 1.35em;
     height: 400px;
-    padding: 5% 10%;
   }
   .home-banner > a {
     font-size: 0.65em;
