@@ -180,6 +180,11 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing ul {
 .main-container .video-container {
   background: #27576b;
 }
+.event-container {
+  width: 100%;
+  height: 500px;
+  text-align: center;
+}
 .footer {
   margin: 0;
 }
@@ -539,6 +544,11 @@ pre {
   #bs-example-navbar-collapse-1 {
     padding-left: 0;
   }
+  .event-container {
+    width: 100%;
+    height: 500px;
+    text-align: center;
+  }
   .home-banner,
   .event-container {
     font-size: 1.5em;
@@ -566,6 +576,11 @@ pre {
   }
   nav {
     width: 100%;
+  }
+  .event-container {
+    width: 100%;
+    height: 500px;
+    text-align: center;
   }
   .home-banner,
   .event-container {
@@ -653,6 +668,11 @@ pre {
   }
   .container-fluid > .navbar-header {
     background: #27576b;
+  }
+  .event-container {
+    width: 100%;
+    height: 500px;
+    text-align: center;
   }
   .home-banner,
   .event-container {
