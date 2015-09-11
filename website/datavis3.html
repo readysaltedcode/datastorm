@@ -61,22 +61,23 @@
             <div class="loading">
               <button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading visualisation</button>
             </div>
-            <div id='animation-container-1'>
+
+            <div id='animation-container-3'>
             <div class="row data-vis-header">
               <div class="col-md-1">
               </div> <!-- /col -->
               <div class="col-md-10" id="data-vis-nav">
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 data-vis-nav-button">
-                  <a href="datavis6.html"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                  <a href="datavis2.html"><span class="glyphicon glyphicon-chevron-left"></span></a>
                 </div> <!-- /col -->
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                  <p class="data-vis-title">VIRUS</p>
+                  <p class="data-vis-title">NETWORK</p>
                 </div> <!-- /col -->
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 data-vis-nav-button">
-                  <a href="datavis2.html"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                  <a href="datavis4.html"><span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div> <!-- /col -->
               </div> <!-- /col -->
-              <div class="col-md-1">
+              <div class="col-lg-2 col-md-1">
               </div> <!-- /col -->
             </div> <!-- /row -->
               <div class="row data-vis-container">
@@ -85,20 +86,22 @@
                   <div class="col-md-10" id="data-vis-animation">
 
                     <div class="wrapper">
+                      <!-- <svg></svg> -->
                       <canvas id="mycanvas"></canvas>
                     </div>
 
-                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/virus/js/d3.min.js"></script>
-                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/virus/js/lodash.min.js"></script>
-                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/virus/js/requestanimframe.js"></script>
-                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/virus/js/datastorm-canvas.js"></script>
-                    <script src="js/virus.js"></script>
+                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/network/js/d3.min.js"></script>
+                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/network/js/lodash.min.js"></script>
+                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/network/js/requestanimframe.js"></script>
+                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/network/js/datastorm-canvas.js"></script>
+                    <script src="js/network.js"></script>
+
 
                   </div> <!-- /col -->
                 <div class="col-md-1">
                 </div> <!-- /col -->
               </div> <!-- /data-vis-container -->
-            </div><!-- /animation-container-1 -->
+            </div><!-- /animation-container-3 -->
 
 
             <div class="row data-vis-subnav">
@@ -107,7 +110,7 @@
               <div class="col-md-10" id="data-vis-subnav">
 
                 <a href="datavis.html">
-                  <div class="col-lg-five data-vis-subnav-button data-vis-subnav-1" id="active-data-vis-button">
+                  <div class="col-lg-five data-vis-subnav-button data-vis-subnav-1">
                     <p>VIRUS</p>
                   </div>
                 </a>
@@ -119,7 +122,7 @@
                 </a>
 
                 <a href="datavis3.html">
-                  <div class="col-lg-five data-vis-subnav-button data-vis-subnav-3">
+                  <div class="col-lg-five data-vis-subnav-button data-vis-subnav-3" id="active-data-vis-button">
                     <p>NETWORK</p>
                   </div>
                 </a>
@@ -143,20 +146,22 @@
                 </a>
 
               </div> <!-- /col -->
-              <div class="col-md-1"></div>
+              <div class="col-lg-2 col-md-1"></div>
             </div> <!-- /row -->
 
 
-            <div id='code-container-1' class="row data-vis-code">
+
+            <div id='code-container-3' class="row data-vis-code">
               <div class="col-md-1 hidden-sm hidden-xs">
               </div> <!-- /col -->
               <div class="col-md-10 javascript-container">
+
                 <pre class="prettyprint">
 
 &quot;use strict&quot;;
 var datastorm = datastorm || {};
 
-datastorm.virus = (function(){
+datastorm.network = (function(){
   var my = {};
 
   var elements = {};
@@ -175,14 +180,19 @@ datastorm.virus = (function(){
       return d.strength;
     })
     .gravity(0.01)
-    .friction(0.1);
+    .friction(0.1)
+    // .on(&#39;tick&#39;, render);
 
-  var timer;
+  // var timer;
 
   var ctx = datastorm.canvas.ctx;
 
-  function init() {
+  var colorScale = d3.scale.category20();
 
+
+
+  function init() {
+    // elements.svg = d3.select(&#39;svg&#39;);
     d3.select(&#39;canvas&#39;)
       .attr(&#39;width&#39;, config.width)
       .attr(&#39;height&#39;, config.height);
@@ -190,19 +200,9 @@ datastorm.virus = (function(){
     force.size([config.width, config.height]);
   }
 
-
-
-
-  function forceEnd() {
-    // updatePositions();
-    // updateNetwork();
-  }
-
   function updateNetwork() {
-
-    // Clone, otherwise adding nodes whilst iterating is not clever :)
-    nodes = _.clone(datastorm.virus.sim.getUsers());
-    links = _.clone(datastorm.virus.sim.getLinks());
+    nodes = _.clone(datastorm.network.sim.getUsers());
+    links = _.clone(datastorm.network.sim.getLinks());
 
     force.nodes(nodes)
       .links(links)
@@ -212,7 +212,7 @@ datastorm.virus = (function(){
   function render() {
     ctx.globalAlpha = 1;
 
-    ctx.fillStyle = &quot;rgba(0, 0, 0, 0.6)&quot;;
+    ctx.fillStyle = &quot;rgba(0, 0, 0, 0.4)&quot;;
     ctx.fillRect(0, 0, config.width, config.height);
 
 
@@ -229,48 +229,12 @@ datastorm.virus = (function(){
 
     // // Nodes
     // console.log(&#39;render&#39;, nodes.length);
-    ctx.fillStyle = &#39;rgba(200,200,255,1)&#39;;
+    // ctx.fillStyle = &#39;rgba(200,200,255,0.5)&#39;;
     _.each(nodes, function(d) {
       // console.log(d);
-      // ctx.fillStyle = colorScale(d.subject * 2);
-
-      var activeMessages = _.filter(d.messages, function(dd) {
-        return dd.active;
-      });
-
-      var fill = &#39;#ddd&#39;;
-
-      var radius = 3;
-      if(activeMessages.length &gt; 0) {
-        fill = activeMessages[0].color;
-        radius = 6;
-      }
-
-      ctx.fillStyle = fill;
-
-      datastorm.canvas.drawCircle(d.x, d.y, radius);
+      ctx.fillStyle = colorScale(d.subject * 2);
+      datastorm.canvas.drawCircle(d.x, d.y, 3);
     });
-  }
-
-  function showMessages() {
-    elements.svg
-      .select(&#39;.nodes&#39;)
-      .selectAll(&#39;circle&#39;)
-      .each(function(d) {
-        var activeMessages = _.filter(d.messages, function(dd) {
-          return dd.active;
-        });
-
-        var fill = &#39;#ddd&#39;;
-
-        if(activeMessages.length &gt; 0)
-          fill = activeMessages[0].color;
-
-        d3.select(this)
-          .style(&#39;fill&#39;, fill)
-          .attr(&#39;r&#39;, activeMessages.length &gt; 0 ? 6 : 3);
-
-      });
   }
 
 
@@ -279,15 +243,15 @@ datastorm.virus = (function(){
 
     init();
 
+    setInterval(render, 100);
+
+    // updateNetwork();
   };
 
-  my.start = function() {
-    datastorm.virus.sim.start();
-    setInterval(render, 100);
-  }
-
   my.stop = function() {
-    datastorm.virus.sim.stop();
+    // clearInterval(timer);
+
+    datastorm.network.sim.stop();
   };
 
   my.networkUpdate = function() {
@@ -297,10 +261,8 @@ datastorm.virus = (function(){
   return my;
 }());
 
-&quot;use strict&quot;;
-var datastorm = datastorm || {};
 
-datastorm.virus.sim = (function(){
+datastorm.network.sim = (function(){
   var my = {};
 
   var timer;
@@ -308,7 +270,7 @@ datastorm.virus.sim = (function(){
   var messageId = -1;
 
   var config = {
-    addUserProbability: 0.2,
+    addUserProbability: 0.1,
     addMessageProbability: 0.6,
     addFriendProbability: 1,
     repeatMessageProbability: 0.9,
@@ -328,7 +290,7 @@ datastorm.virus.sim = (function(){
   function randomColor() {
     var color = d3.rgb(Math.random() * 255, Math.random() * 255, Math.random() * 255);
     color = color.toString();
-    // console.log(color);
+    console.log(color);
     return color;
   }
 
@@ -350,33 +312,23 @@ datastorm.virus.sim = (function(){
       subject: Math.floor(Math.random() * 10), // the user&#39;s interest area,
       friends: [],
       messages: [],
-      // isMessaging: false,
-      // isRepeatedMessage: false,
-      // messageTime: null,
-      // isRepeatingMessage: false,
       x: 0.5 * config.width + 10 * Math.random(), //TODO
       y: 0.5 * config.height + 10 * Math.random()//TODO
     };
 
     // console.log(newUser);
     users.push(newUser);
-    datastorm.virus.networkUpdate();
+    datastorm.network.networkUpdate();
   }
 
   function purgeMessages() {
     var now = Date.now();
-    // messages = _.filter(messages, function(message) {
-    //   return now - message.time &lt; config.repeatMessageTimespan;
-    // });
 
     _.each(users, function(user) {
       _.each(user.messages, function(m) {
         if(now - m.time &gt; config.repeatMessageTimespan)
           m.active = false;
       });
-      // user.messages = _.filter(user.messages, function(m) {
-      //   return now - m.time &lt; config.repeatMessageTimespan;
-      // });
     });
   }
 
@@ -387,7 +339,6 @@ datastorm.virus.sim = (function(){
       return;
 
     _.each(users, function(user) {
-      // console.log(user);
 
       // Throttle message creation (w/out changing globals)
       if(!shouldDo(0.05))
@@ -423,12 +374,8 @@ datastorm.virus.sim = (function(){
       if(!shouldDo(4 * user.chatty))  // 4 times more likely to repeat a message?
         return;
 
-      // console.log(&quot;looking at friends&quot;)
-
       // Go through each friend
       _.each(user.friends, function(friend) {
-
-        // console.log(&#39;checking friend&#39;)
 
         if(!shouldDo(friend.interesting))
           return;
@@ -439,9 +386,6 @@ datastorm.virus.sim = (function(){
           if(!m.active)
             return;
 
-          // console.log(&#39;checking messages&#39;)
-
-          // check user hasn&#39;t already sent this one!
           var hasAlreadySent = false;
           _.each(user.messages, function(mm) {
             if(mm.id === m.id)
@@ -459,7 +403,7 @@ datastorm.virus.sim = (function(){
           }
           user.messages.push(reMessage);
 
-          // console.log(&#39;remessage!&#39;)
+          console.log(&#39;remessage!&#39;)
         });
 
       })
@@ -476,15 +420,6 @@ datastorm.virus.sim = (function(){
           return;
 
         var probability = otherUser.chatty * thisUser.friendly * otherUser.interesting;
-
-        // if(!shouldDo(otherUser.chatty))
-        //   return;
-
-        // if(!shouldDo(thisUser.friendly))
-        //   return;
-
-        // if(!shouldDo(otherUser.interesting))
-        //   return;
 
         if(thisUser.subject !== otherUser.subject)
           probability *= 0.002;
@@ -516,7 +451,7 @@ datastorm.virus.sim = (function(){
         thisUser.friends.push(otherUser);
         otherUser.friends.push(thisUser);
 
-        datastorm.virus.networkUpdate();
+        datastorm.network.networkUpdate();
 
 
       });
@@ -526,12 +461,7 @@ datastorm.virus.sim = (function(){
 
   function update() {
     addUser();
-    purgeMessages();
-    addMessage();
-    repeatMessage();
     addFriend();
-
-    // console.log(users, messages, links);
   }
 
   my.init = function(conf) {
@@ -561,31 +491,30 @@ datastorm.virus.sim = (function(){
   return my;
 }());
 
+
 (function(){
 
   var wrapper = d3.select(&#39;.wrapper&#39;);
   var width = wrapper.node().clientWidth;
   var height = wrapper.node().clientHeight;
 
-  datastorm.virus.sim.init({
+  datastorm.network.sim.init({
     width: width,
     height: height
   });
-  datastorm.virus.init({
+  datastorm.network.init({
     width: width,
     height: height
   });
 
-  datastorm.virus.start();
+  datastorm.network.sim.start();
 
 })();
-
                 </pre>
 
-                <p>See the Pen <a href='http://codepen.io/readysaltedcode/pen/MaaXwg/'>Datastorm - Virus</a> by Genevieve Smith-Nunes (<a href='http://codepen.io/readysaltedcode'>@readysaltedcode</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-
+                <p data-height="268" data-theme-id="0" data-slug-hash="NGGMJL" data-default-tab="result" data-user="readysaltedcode" class='codepen'>See the Pen <a href='http://codepen.io/readysaltedcode/pen/NGGMJL/'>Datastorm - Network</a> by Genevieve Smith-Nunes (<a href='http://codepen.io/readysaltedcode'>@readysaltedcode</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
               </div> <!-- /col -->
-              <div class="col-lg-2 col-md-1 hidden-sm hidden-xs">
+              <div class="col-md-1 hidden-sm hidden-xs">
               </div> <!-- /col -->
             </div> <!-- /row -->
 
@@ -611,5 +540,6 @@ datastorm.virus.sim = (function(){
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=js&amp;skin=sunburst"></script>
+
   </body>
 </html>
