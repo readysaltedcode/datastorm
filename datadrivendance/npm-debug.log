@@ -1,0 +1,72 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save-dev',
+1 verbose cli   'grunt-mustache:',
+1 verbose cli   'git://github.com/LenaKari/grunt-mustache' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 warn package.json data-storm@0.1.0 No description
+5 warn package.json data-storm@0.1.0 No repository field.
+6 warn package.json data-storm@0.1.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'grunt-mustache:', null ]
+9 verbose cache add name=undefined spec="grunt-mustache:" args=["grunt-mustache:",null]
+10 verbose parsed url { protocol: 'grunt-mustache:',
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: '',
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: '',
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: null,
+10 verbose parsed url   path: null,
+10 verbose parsed url   href: 'grunt-mustache:' }
+11 verbose cache add [ 'git://github.com/LenaKari/grunt-mustache', null ]
+12 verbose cache add name=undefined spec="git://github.com/LenaKari/grunt-mustache" args=["git://github.com/LenaKari/grunt-mustache",null]
+13 verbose parsed url { protocol: 'git:',
+13 verbose parsed url   slashes: true,
+13 verbose parsed url   auth: null,
+13 verbose parsed url   host: 'github.com',
+13 verbose parsed url   port: null,
+13 verbose parsed url   hostname: 'github.com',
+13 verbose parsed url   hash: null,
+13 verbose parsed url   search: null,
+13 verbose parsed url   query: null,
+13 verbose parsed url   pathname: '/LenaKari/grunt-mustache',
+13 verbose parsed url   path: '/LenaKari/grunt-mustache',
+13 verbose parsed url   href: 'git://github.com/LenaKari/grunt-mustache' }
+14 silly lockFile c25409d2-grunt-mustache grunt-mustache:
+15 verbose lock grunt-mustache: /home/lenakari/.npm/c25409d2-grunt-mustache.lock
+16 silly lockFile 9cb1e630-thub-com-LenaKari-grunt-mustache git://github.com/LenaKari/grunt-mustache
+17 verbose lock git://github.com/LenaKari/grunt-mustache /home/lenakari/.npm/9cb1e630-thub-com-LenaKari-grunt-mustache.lock
+18 verbose addRemoteGit [ 'git://github.com/LenaKari/grunt-mustache', 'master' ]
+19 silly lockFile c25409d2-grunt-mustache grunt-mustache:
+20 silly lockFile c25409d2-grunt-mustache grunt-mustache:
+21 verbose addNamed [ 'grunt-mustache:', '' ]
+22 verbose addNamed [ null, '*' ]
+23 silly lockFile 1861fa0e-grunt-mustache grunt-mustache:@
+24 verbose lock grunt-mustache:@ /home/lenakari/.npm/1861fa0e-grunt-mustache.lock
+25 silly addNameRange { name: 'grunt-mustache:', range: '*', hasData: false }
+26 error TypeError: Cannot call method 'replace' of null
+26 error     at cf (/usr/local/lib/node_modules/npm/node_modules/npm-cache-filename/index.js:14:22)
+26 error     at RegClient.get (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/get.js:28:20)
+26 error     at addNameRange (/usr/local/lib/node_modules/npm/lib/cache/add-named.js:201:12)
+26 error     at /usr/local/lib/node_modules/npm/lib/cache/add-named.js:47:5
+26 error     at /usr/local/lib/node_modules/npm/lib/utils/locker.js:30:7
+26 error     at cb (/usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:149:38)
+26 error     at /usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:171:16
+26 error     at Object.oncomplete (fs.js:107:15)
+27 error If you need help, you may report this *entire* log,
+27 error including the npm and node versions, at:
+27 error     <http://github.com/npm/npm/issues>
+28 error System Linux 3.13.0-55-generic
+29 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "--save-dev" "grunt-mustache:" "git://github.com/LenaKari/grunt-mustache"
+30 error cwd /home/lenakari/git/datastorm
+31 error node -v v0.10.33
+32 error npm -v 1.4.28
+33 error type non_object_property_call
+34 verbose exit [ 1, true ]
