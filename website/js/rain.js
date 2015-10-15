@@ -3,8 +3,12 @@ var datastorm = datastorm || {};
 datastorm.rain = (function(){
   var my = {};
 
-  var width = document.body.clientWidth;
-  var height = document.body.clientHeight;
+  var wrapper = d3.select('.wrapper');
+  var width = wrapper.node().clientWidth;
+  var height = wrapper.node().clientHeight;
+  
+  //var width = document.body.clientWidth;
+  //var height = document.body.clientHeight;
 
   // var width = 1200, height = 800;
 
