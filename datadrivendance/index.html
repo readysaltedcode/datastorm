@@ -14,7 +14,7 @@
     <meta name="author" content="readysaltedcode cic">
 
 
-    <title>Home</title>
+    <title>Projects</title>
 
     <!-- Core Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -31,70 +31,57 @@
 
   <body>
     <div class="container">
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html"><img src="img/logo.png" /></a>
-          </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav" id="nav-list">
-              <li><a href="about.html">ABOUT</a></li>
-              <li><a href="dance.html">DANCE</a></li>
-              <li><a href="projects.html">PROJECTS</a></li>
-              <li><a href="resources.html">RESOURCES</a></li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
       <div class="row main-container">
         <div class="col-md-12">
-          <div id='home'>
-            <div class="home-banner">
-                  <!-- Carousel
-                  ================================================== -->
-                  <div id="homeCarousel" class="carousel slide" data-ride="carousel">
-                    <div id="home-content">
-                      <p>A data driven dance performance about ocean storm and computer science theory. The theory for this ballet is all about data transmission, security, protocols, internet, networks and weather. This dance performance will include visuals derived from data along side videos projected onto 3D objects to enhance the audience experience. Working with The Met Office and Weather data to influence the choreography and visuals of the ballet.</p>
-                      <a class="btn btn-default" href="dance.html">WATCH</a>
-                    </div>
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                      <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
-                      <li data-target="#homeCarousel" data-slide-to="1"></li>
-                    </ol>
-                    <div class="carousel-inner" role="listbox">
-                      <div class="item first-slide active">
-                        <div class="opacity-layer"></div>
-                      </div>
-                      <div class="item second-slide">
-                        <div class="opacity-layer"></div>
-                      </div>
-                    </div>
-                  </div><!-- /.carousel -->
-            </div> <!-- /home-banner -->
-          </div> <!-- /home -->
+          <div id='projects'>
+            <div class="prebanner">
+              <div id="prebanner">
+                <div>
+                  <img src="img/logo.png" />
+                </div> <!-- /col -->
+              </div> <!-- /col -->
+            </div> <!-- /row -->
+            <div>
+              <div class="row projects-container">
+              </div>
+            </div>
+
+
+            <div class="row projects-subnav">
+              <div id="projects-subnav">
+                <a href="http://www.datadrivendance.org/arrastre/index.html">
+                  <div class="col-lg-five projects-subnav-button">
+                    <p>ARRASTRE</p>
+                  </div>
+                </a>
+
+                <a href="http://www.artofcs.org">
+                  <div class="col-lg-five projects-subnav-button">
+                    <p>ART OF CS</p>
+                  </div>
+                </a>
+
+                <a href="http://www.datadrivendance.org/datastorm/index.html">
+                  <div class="col-lg-five projects-subnav-button">
+                    <p>DATASTORM</p>
+                  </div>
+                </a>
+
+              </div> <!-- /data-vis-subnav -->
+            </div> <!-- /row -->
+
+
+          </div><!-- /datavis -->
         </div> <!-- /col -->
       </div> <!-- main-container -->
-
 
        <div class="row footer">
         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 footer-left">
           <p>&copy; COPYRIGHT 2015 <a href="http://www.readysaltedcode.org/" class="footer-link">READYSALTEDCODE CIC</a></p>
         </div> <!-- /col -->
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 footer-right">
-          <p><a href="termsandconditions.html" class="footer-link">TERMS &amp; CONDITIONS</a></p>
-        </div> <!-- /col -->
       </div> <!-- /row -->
     </div> <!-- /container -->
+
 
     <!-- Scripts
     ================================================== -->
@@ -102,6 +89,5 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-
   </body>
 </html>

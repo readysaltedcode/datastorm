@@ -111,6 +111,9 @@ div#bs-example-navbar-collapse-1.navbar-collapse.collapsing ul {
   margin: 3em auto;
   background: #f8f8f8;
 }
+.main-container #prebanner {
+  margin-bottom: 1em;
+}
 .main-container .prebanner-title {
   font-size: 2em;
   font-weight: bold;
