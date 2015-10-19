@@ -1,4 +1,3 @@
-"use strict";
 var datastorm = datastorm || {};
 
 datastorm.rain = (function(){
@@ -7,8 +6,12 @@ datastorm.rain = (function(){
   var canvas = d3.select('canvas');
   var width = canvas.node().clientWidth;
   var height = canvas.node().clientHeight;
+
+  // Create 1-to-1 mapping between canvas and screen
   canvas.attr('width', width);
   canvas.attr('height', height);
+
+  // var width = 1200, height = 800;
 
   var raindrops = [];
   var minMonthlyRainfall, maxMonthlyRainfall;
@@ -171,8 +174,8 @@ datastorm.rain = (function(){
   }
 
   my.init = function() {
-    d3.json('data/rainfall.json', function(err, rainJson) {
-      d3.json('data/maxtemp.json', function(err, tempJson) {
+    d3.json('https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/rain/data/rainfall.json', function(err, rainJson) {
+      d3.json('https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/rain/data/maxtemp.json', function(err, tempJson) {
         initialiseData(rainJson, tempJson);
       });
     });
@@ -193,3 +196,6 @@ datastorm.rain = (function(){
 
   return my;
 }());
+
+datastorm.rain.init();
+datastorm.rain.start();
