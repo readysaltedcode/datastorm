@@ -29,7 +29,7 @@
 /* 
  *  Uses the step notification interrupt to animate and LED ring.
  *  
- * Does not use the step counter as, by design, the step counter does not immediately update on every step detected.
+ * It Does not use the step counter as, by design, the step counter does not immediately update on every step detected.
  * Please refer to Section 2.7 of the BMI160 IMU SensorData Sheet
  * for more information on this feature.
  *
