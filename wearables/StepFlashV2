@@ -29,11 +29,11 @@
 /* 
  *  Uses the step notification interrupt to animate and LED ring.
  *  
- * It Does not use the step counter as, by design, the step counter does not immediately update on every step detected.
+ * It does not use the step counter as, by design, the step counter does not immediately update on every step detected.
  * Please refer to Section 2.7 of the BMI160 IMU SensorData Sheet
  * for more information on this feature.
  *
- * For RGB values a useful site: http://www.rgbtool.com/
+ * For RGB values try this useful site: http://www.rgbtool.com/
 */
 
 #define PIN 5       // pin to led ring from main board. 
@@ -45,7 +45,7 @@ void setup() {
 
   strip.begin();
   strip.setBrightness(40); //adjust brightness of the LEDs.  This also reduces the power consumption.
-  strip.show(); // Initialize all pixels to 'off' 
+  strip.show(); // Initialise all pixels to 'off' 
   
   Serial.begin(9600);
   
@@ -62,7 +62,7 @@ void setup() {
 }
 
 void loop() {
-// Do nothing! We don't any code here as we are using an event handler to listen for changes in movement- The 'event call back' code is written below.
+// Do nothing! We don't have any code here as we are using an event handler to listen for changes in movement- The 'event call back' code is written below.
 }
 
 /*
