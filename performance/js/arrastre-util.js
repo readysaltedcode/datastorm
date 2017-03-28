@@ -31,16 +31,16 @@ arrastre.util = (function(){
 
     var trianglePoints_kinect = [
       // ['ShoulderCenter', 'ShoulderLeft', 'ShoulderRight'],
-      ['ShoulderLeft', 'ShoulderRight', 'Spine'],
-      ['HipCenter', 'HipLeft', 'HipRight'],
+      ['ShoulderLeft', 'ShoulderRight', 'SpineMid'],
+      ['SpineBase', 'HipLeft', 'HipRight'],
       ['KneeLeft', 'AnkleLeft', 'FootLeft'],
       ['KneeRight', 'AnkleRight', 'FootRight'],
       ['HandLeft', 'WristLeft', 'ElbowLeft'],
       ['HandRight', 'WristRight', 'ElbowRight'],
       ['HipLeft', 'HipRight', 'KneeLeft'],
       ['HipLeft', 'HipRight', 'KneeRight'],
-      ['ShoulderCenter', 'ShoulderLeft', 'ElbowLeft'],
-      ['ShoulderCenter', 'ShoulderRight', 'ElbowRight']
+      ['SpineShoulder', 'ShoulderLeft', 'ElbowLeft'],
+      ['SpineShoulder', 'ShoulderRight', 'ElbowRight']
     ];
     var trianglePoints_realsense = [
       ['JOINT_WRIST','JOINT_THUMB_BASE','JOINT_THUMB_JT1'],
@@ -63,7 +63,7 @@ arrastre.util = (function(){
       
     ];
 
-    var trianglePoints = trianglePoints_realsense;
+    var trianglePoints = trianglePoints_kinect;
     
     var triangles = _.map(trianglePoints, function(points) {
       var coords = _.map(points, function(p) {
@@ -71,7 +71,6 @@ arrastre.util = (function(){
       });
       return coords;
     });
-    // console.log(triangles);
     return triangles;
   }
 

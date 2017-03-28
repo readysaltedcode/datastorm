@@ -148,7 +148,7 @@ namespace KinectServer
         {
             public override IEnumerable<Type> SupportedTypes
             {
-                get { return new ReadOnlyCollection<Type>(new List<Type>(new Type[] { typeof(Microsoft.Kinect.Joint) })); }
+                get { return new ReadOnlyCollection<Type>(new Type[] { typeof(Microsoft.Kinect.Joint) }); }
             }
             public override IDictionary<string, object> Serialize(object obj, JavaScriptSerializer serializer)
             {
@@ -217,7 +217,10 @@ namespace KinectServer
                     public KinectJointsCollection(IReadOnlyDictionary<JointType,Joint> joints) { _joints = joints; }
                     public int Count { get { return _joints.Count; } }
                     public GJoint this[JointType i] { get { return new GJoint(_joints[i]); } }
-                    public IEnumerator GetEnumerator() { return _joints.GetEnumerator(); }
+                    public IEnumerator GetEnumerator() {
+                        return _joints.Values.ToArray().GetEnumerator();
+                         
+                    }
                     private IReadOnlyDictionary<JointType, Joint> _joints;
                 }
             }
