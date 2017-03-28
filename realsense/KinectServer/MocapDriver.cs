@@ -7,6 +7,7 @@ namespace KinectServer
 {
     public abstract class MocapDriver : SkeletonEventDispatcher
     {
+        private int lastFrameSkeletonCount = 0;
 
         private List<SkeletonReceiver> listeners = new List<SkeletonReceiver>();
 
@@ -19,6 +20,11 @@ namespace KinectServer
             {
                 //Console.WriteLine("\tSkeletonFrame.FrameNumber: {0}", frame.FrameNumber);
                 //newSkeletonFrame = true;
+                if (frame.Skeletons.Count > lastFrameSkeletonCount)
+                    Console.WriteLine("\tMore skeletons detected");
+                else if (frame.Skeletons.Count < lastFrameSkeletonCount)
+                    Console.WriteLine("\tFewer skeletons detected");
+                lastFrameSkeletonCount = frame.Skeletons.Count;
 
                 List<SkeletonReceiver> sickListeners = new List<SkeletonReceiver>();
                 // This would be more stable if implemented using a thread pool and a queue, but for
