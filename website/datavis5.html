@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: fill this in -->
+    <meta name="description" content="datastorm: is a digital data driven dance performance that derives its movements and concepts from computer science theory. The performance will break down certain theories and concepts during the performance through the movement of ballet.">
+    <meta name="keywords" content="d3, digital, ballet, DataVis, SVG">
+    <meta name="author" content="readysaltedcode cic">
+
+
+    <title>Data Vis</title>
+
+    <!-- Core Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <!-- arrastre.org CSS -->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!-- Google font - Quicksand -->
+    <link href='http://fonts.googleapis.com/css?family=Quicksand:700' rel='stylesheet' type='text/css'>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  </head>
+
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png" /></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav" id="nav-list">
+              <li><a href="about.html">ABOUT</a></li>
+              <li><a href="dance.html">DANCE</a></li>
+              <li><a href="datavis.html">DATA VIS</a></li>
+              <li><a href="resources.html">RESOURCES</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      <div class="row main-container">
+        <div class="col-md-12">
+          <div id='datavis'>
+            <div class="loading">
+              <button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading visualisation</button>
+            </div>
+
+            <div id='animation-container-5'>
+            <div class="row data-vis-header">
+              <div class="col-md-1">
+              </div> <!-- /col -->
+              <div class="col-md-10" id="data-vis-nav">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 data-vis-nav-button">
+                  <a href="datavis4.html"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                </div> <!-- /col -->
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                  <p class="data-vis-title">AUDIOSTORM</p>
+                </div> <!-- /col -->
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 data-vis-nav-button">
+                  <a href="datavis6.html"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div> <!-- /col -->
+              </div> <!-- /col -->
+              <div class="col-lg-2 col-md-1">
+              </div> <!-- /col -->
+            </div> <!-- /row -->
+              <div class="row data-vis-container">
+                <div class="col-md-1">
+                </div> <!-- /col -->
+                  <div class="col-md-10" id="data-vis-animation">
+
+                    <div id="wrapper">
+                      <canvas id="mycanvas" width="1200" height="800"></canvas>
+                      <div id="info"></div>
+                    </div>
+
+                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/audiostorm/js/d3.v3.min.js"></script>
+                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/audiostorm/js/datastorm-canvas.js"></script>
+                    <script src="https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/audiostorm/js/audiostorm.js"></script>
+                    <script src="js/audiostorm.js"></script>
+
+                  </div> <!-- /col -->
+                <div class="col-md-1">
+                </div> <!-- /col -->
+              </div> <!-- /data-vis-container -->
+            </div><!-- /animation-container-5 -->
+
+            <div class="row data-vis-subnav">
+              <div class="col-md-1 hidden-sm hidden-xs">
+              </div> <!-- /col -->
+              <div class="col-md-10" id="data-vis-subnav">
+
+                <a href="datavis.html">
+                  <div class="col-lg-five data-vis-subnav-button data-vis-subnav-1">
+                    <p>VIRUS</p>
+                  </div>
+                </a>
+
+                <a href="datavis2.html">
+                  <div class="col-lg-five data-vis-subnav-button data-vis-subnav-2">
+                    <p>PROTOCOL</p>
+                  </div>
+                </a>
+
+                <a href="datavis3.html">
+                  <div class="col-lg-five data-vis-subnav-button data-vis-subnav-3">
+                    <p>NETWORK</p>
+                  </div>
+                </a>
+
+                <a href="datavis4.html">
+                  <div class="col-lg-five data-vis-subnav-button data-vis-subnav-4">
+                    <p>FORECAST</p>
+                  </div>
+                </a>
+
+                <a href="datavis5.html">
+                  <div class="col-lg-five data-vis-subnav-button data-vis-subnav-5" id="active-data-vis-button">
+                    <p>AUDIOSTORM</p>
+                  </div>
+                </a>
+
+                <a href="datavis6.html">
+                  <div class="col-lg-five data-vis-subnav-button data-vis-subnav-6">
+                    <p>RAIN</p>
+                  </div>
+                </a>
+
+              </div> <!-- /col -->
+              <div class="col-lg-2 col-md-1"></div>
+            </div> <!-- /row -->
+
+
+            <div id='code-container-5' class="row data-vis-code">
+              <div class="col-md-1 hidden-sm hidden-xs">
+              </div> <!-- /col -->
+              <div class="col-md-10 javascript-container">
+                <pre class="prettyprint">
+
+&quot;use strict&quot;;
+var datastorm = datastorm || {};
+
+datastorm.audioStorm = (function(){
+  var my = {};
+
+  var config = {};
+
+  var music = null;
+
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  var context = new AudioContext();
+  var analyser;
+
+  var animationActive = true;
+
+  var dataArray, bufferLength, source;
+
+  var ctx = datastorm.canvas.ctx;
+
+  var width = document.body.clientWidth;
+  var height = document.body.clientHeight;
+
+  var waveXSpread = 0.1;
+  var xScale = d3.scale.linear().domain([0, 255]).range([(0.5 - waveXSpread) * width, (0.5 + waveXSpread) * width]);
+  var yScale = d3.scale.linear().domain([0, 512]).range([0, height]);
+
+  var lightningWaveXSpread = 0.15;
+  var lightningXScale = d3.scale.linear().domain([0, 255]).range([(0.5 - lightningWaveXSpread) * width, (0.5 + lightningWaveXSpread) * width]);
+  var xRandomOffset = 1000;
+
+  var yStep = 100;
+
+  var frameTimer, decreaseTimeStepTimer, clearFrameTime, expandXTimer, increaseXRandomOffsetTimer, decreaseYStepTimer;
+  var timeInterval = 1300;
+
+  function clearFrame() {
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = &quot;rgba(0, 0, 0, 0.05)&quot;;
+    ctx.fillRect(0, 0, width, height);
+  }
+
+  function getSumOfDeltas(data) {
+    var sum = 0;
+    for(var i = 1; i &lt; bufferLength; i ++) {
+      sum += Math.abs(dataArray[i] - dataArray[i-1]);
+    }
+    return sum;
+  }
+
+  function chanceOfLightning(sumOfDeltas) {
+    if(sumOfDeltas &lt; 600)
+      return 0;
+    return sumOfDeltas / 15000;
+  }
+
+  function doFrame() {
+    analyser.getByteTimeDomainData(dataArray);
+
+    ctx.strokeStyle = &#39;#689&#39;;
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 1;
+
+    var chance = chanceOfLightning(getSumOfDeltas(dataArray));
+
+    if(Math.random() &gt; chance) {
+      // normal
+
+      var xOffset = (Math.random() * xRandomOffset) - 0.5 * xRandomOffset;
+
+      for(var i = 1; i &lt; bufferLength; i += yStep) {
+        var ii = i - yStep ;
+        datastorm.canvas.drawLine(xScale(dataArray[ii]) + xOffset, yScale(ii), xScale(dataArray[i]) + xOffset, yScale(i));
+      }
+    } else {
+      // ctx.strokeStyle = &#39;#7DF9FF&#39;;
+      ctx.globalAlpha = Math.random() * 0.5 + 0.5;
+      var xOffset = 0.5 * (Math.random() * width - 0.5 * width);
+      // ctx.lineWidth = 2;
+      for(var i = 1; i &lt; bufferLength; i += yStep) {
+        var ii = i - yStep ;
+        datastorm.canvas.drawLine(lightningXScale(dataArray[ii]) + xOffset, yScale(ii), lightningXScale(dataArray[i]) + xOffset, yScale(i));
+      }
+    }
+  }
+
+  function expandX() {
+    if(waveXSpread &gt; 0.3)
+      return;
+
+    waveXSpread += 0.1;
+    xScale.range([(0.5 - waveXSpread) * width, (0.5 + waveXSpread) * width]);
+  }
+
+  function increaseXRandomOffset() {
+    if(xRandomOffset &lt; 1)
+      return;
+
+    xRandomOffset -= 50;
+  }
+
+  function decreaseYStep() {
+    yStep -= 5;
+
+    if(yStep &lt; 1)
+      yStep = 1;
+  }
+
+  function decreaseTimeStep() {
+    if(timeInterval &lt;= 100)
+      return;
+
+    clearInterval(frameTimer);
+
+    timeInterval -= 200;
+    if(timeInterval &lt; 100)
+      timeInterval = 100;
+
+    frameTimer = setInterval(doFrame, timeInterval);
+  }
+
+  function ready(buffer) {
+    music = buffer;
+
+    source = context.createBufferSource();
+    source.buffer = music;
+
+    analyser = context.createAnalyser();
+    analyser.fftSize = 1024;
+    bufferLength = analyser.frequencyBinCount;
+    dataArray = new Uint8Array(bufferLength);
+    source.connect(analyser);
+
+    analyser.connect(context.destination);
+
+    if(config.autoStart === true)
+      my.start();
+  }
+
+  my.init = function(conf) {
+
+    config = conf;
+    var url = config.audioUrl;
+
+    var request = new XMLHttpRequest();
+    request.open(&#39;GET&#39;, url, true);
+    request.responseType = &#39;arraybuffer&#39;;
+
+    // Decode asynchronously
+    request.onload = function() {
+      context.decodeAudioData(request.response, ready);
+    }
+    request.send();
+
+  }
+
+  my.start = function() {
+    source.start(0);
+
+    frameTimer = setInterval(doFrame, timeInterval);
+    decreaseTimeStepTimer = setInterval(decreaseTimeStep, 20000);
+    clearFrameTime = setInterval(clearFrame, 40);
+    expandXTimer = setInterval(expandX, 30000);
+    increaseXRandomOffsetTimer = setInterval(increaseXRandomOffset, 10000);
+    decreaseYStepTimer = setInterval(decreaseYStep, 5000);    
+  }
+
+  my.stop = function() {
+    animationActive = false;
+
+    clearInterval(frameTimer);
+    clearInterval(decreaseTimeStepTimer);
+    clearInterval(clearFrameTime);
+    clearInterval(expandXTimer);
+    clearInterval(increaseXRandomOffsetTimer);
+    clearInterval(decreaseYStepTimer);
+
+    source.stop();
+  }
+
+  return my;
+}());
+
+
+
+datastorm.audioStorm.init({
+  audioUrl: &#39;https://d28qoto45d39ov.cloudfront.net/datastorm/visualisations/audiostorm/sounds/allegretto.mp3&#39;,
+  autoStart: true
+});
+
+                </pre>
+                <p data-height="268" data-theme-id="0" data-slug-hash="LppmgZ" data-default-tab="result" data-user="readysaltedcode" class='codepen'>See the Pen <a href='http://codepen.io/readysaltedcode/pen/LppmgZ/'>Datastorm - Audiostorm</a> by Genevieve Smith-Nunes (<a href='http://codepen.io/readysaltedcode'>@readysaltedcode</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+              </div> <!-- /col -->
+              <div class="col-md-1 hidden-sm hidden-xs">
+              </div> <!-- /col -->
+            </div> <!-- /row -->
+
+          </div><!-- /datavis -->
+        </div> <!-- /col -->
+      </div> <!-- main-container -->
+
+
+       <div class="row footer">
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 footer-left">
+          <p>&copy; COPYRIGHT 2014 <a href="http://www.readysaltedcode.org/" class="footer-link">READYSALTEDCODE CIC</a></p>
+        </div> <!-- /col -->
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 footer-right">
+          <p><a href="termsandconditions.html" class="footer-link">TERMS &amp; CONDITIONS</a></p>
+        </div> <!-- /col -->
+      </div> <!-- /row -->
+    </div> <!-- /container -->
+
+    <!-- Scripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=js&amp;skin=sunburst"></script>
+
+  </body>
+</html>
